@@ -16,6 +16,9 @@ export default {
   computed: {
     //ToDo: Create a computed function called funds
     //ToDo: Have funds() return this.$store.getters.funds
+    funds() {
+      return this.$store.getters.funds
+    }
   }
 }
 </script>
