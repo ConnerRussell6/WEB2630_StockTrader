@@ -14,7 +14,7 @@ import App from './App.vue'
 import {routes} from './routes.js'
 
 //ToDo: Import store/store.js and name it store
-import store from './store/store'
+import store from './store/store.js'
 
 Vue.config.productionTip = false
 
@@ -24,11 +24,11 @@ Vue.use(VueRouter)
 //ToDo Initialize VueResource using Vue.use()
 Vue.use(VueResource)
 
-Vue.http.options.root = //ToDo: Set Equal to your Firebase Database URL
+Vue.http.options.root = "https://stocktrader-1b82c-default-rtdb.firebaseio.com/" //ToDo: Set Equal to your Firebase Database URL
 
   Vue.filter('currency', (value) => {
     //ToDo: Return value.toLocaleString(), Add '$' sign before value
-    return $value.toLocaleString() 
+    return "$"+value.toLocaleString() 
   })
 
 const router = new VueRouter({

@@ -3,35 +3,31 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h3 class="panel-title">
-                    <!--ToDo: Display the stock.name data object-->
-                    {{stock.name}}
-
-                    <!--ToDo: Inside <small> tags display Price: stock.price | Quantity stock.quantity-->
-                        <small>
-                            {{ stock.price | stock.quantity}}
-                        </small>
+                    <!--DONE: Display the stock.name data object-->
+                    {{ stock.name }}
+                    <!--DONE: Inside <small> tags display Price: stock.price | Quantity stock.quantity-->
+                        <small>Price: {{ stock.price }} | Quantity: {{ stock.quantity}} </small>
                 </h3>
             </div>
             <div class="panel-body">
                 <div class="pull-left">
-                    <!--ToDo: Inside input use v-model.number and pass quantity-->
-                        <!--ToDo: Bind to class using : and pass object called danger that takes in insufficientQuantity-->
+                    <!--DONE: Inside input use v-model.number and pass quantity-->
+                        <!--DONE: Bind to class using : and pass object called danger that takes in insufficientQuantity-->
                     <input
+                            v-model.number="quantity"
+                            :class="{danger:insufficientQuantity}"
                             type="number"
                             class="form-control"
-                            placeholder="Quantity"
-                            v-model.number="quantity"
-                            :class="{danger: insufficientQuantity}">
-                            
+                            placeholder="Quantity">
                 </div>
                 <div class="pull-right">
-                    <!--ToDo: Inside the button add a click event that calls sellStock-->
-                        <!--ToDo: Bind to disabled using : and set it equal to insufficientQuantity || quantity is less than or equal to 0 || !Number.isInteger(quantity)-->
-                    <button class="btn btn-success" @click="sellStock"
-                    :disabled="insufficentQuanity || quantity <= 0 || !Number.isInteger(quantity)">
-
-                    <!--ToDo: Display insufficientQuantity data object and add if using ? 'Not Enough' else 'Sell'-->
-                    {{insufficentQuantity ? 'Not Enough' : 'Sell'}}
+                    <!--DONE: Inside the button add a click event that calls sellStock-->
+                        <!--DONE: Bind to disabled using : and set it equal to insufficientQuantity || quantity is less than or equal to 0 || !Number.isInteger(quantity)-->
+                    <button class="btn btn-success" 
+                    @click="sellStock" 
+                    :disabled="insufficientQuantity || quantity<=0 || !Number.isInteger(quantity)">
+                        <!--ToDo: Display insufficientQuantity data object and add if using ? 'Not Enough' else 'Sell'-->
+                        {{ insufficientQuantity ? 'Not Enough' : 'Sell' }}
                     </button>
                 </div>
             </div>
@@ -46,41 +42,39 @@
 </style>
 
 <script>
-    //ToDo: Import mapActions from vuex
-    import mapActions from 'vuex'
-
+    //DONE: Import mapActions from vuex
+    import { mapActions } from 'vuex'
     export default {
-        //ToDo: Set props equal to stock using array syntax
-        props: [stock],
-
+        //DONE: Set props equal to stock using array syntax
+        props: ['stock'],
+        
         data() {
             return {
-                //ToDo: Create data object called quantity and set it to 0
+                //DONE: Create data object called quantity and set it to 0
                 quantity: 0
             }
         },
         computed: {
-            //ToDo: Create a computed function called insufficientQuantity
-            //ToDo: Have insufficientQuantity() return this.quantity > this.stock.quantity
-            insufficentQuantity() {
-                return this.quantity > this.stock.quantity
+            //DONE: Create a computed function called insufficientQuantity
+                //DONE: Have insufficientQuantity() return this.quantity > this.stock.quantity
+            insufficientQuantity(){
+                return this.quantity > this.stock.quantity;
             }
         },
         methods: {
-            //ToDo: Create ...mapActions method
-            //ToDo: Call placeSellOrder: 'sellStock'
-            ...mapActions ({
+            //DONE: Create ...mapActions method
+                //DONE: Call placeSellOrder: 'sellStock'
+            ...mapActions({
                 placeSellOrder: 'sellStock'
             }),
-
-            //ToDo: Create sellStock method
-                //ToDo: Create const called order that holds an object
-                    //ToDo: Set stockId: to this.stock.id
-                    //ToDo: Set stockPrice: to this.stock.price
-                    //ToDo: Set quantity: to this.quantity
-            //ToDo: Outside the data object pass the data object order to placeSellOrder()
-            //ToDo: Reset quantity to 0
-            sellStock() {
+            // //DONE: Create sellStock method
+            //     //DONE: Create const called order that holds an object
+            //         //DONE: Set stockId: to this.stock.id
+            //         //DONE: Set stockPrice: to this.stock.price
+            //         //DONE: Set quantity: to this.quantity
+            // //DONE: Outside the data object pass the data object order to placeSellOrder()
+            // //DONE: Reset quantity to 0
+            sellStock(){
                 const order = {
                     stockId: this.stock.id,
                     stockPrice: this.stock.price,

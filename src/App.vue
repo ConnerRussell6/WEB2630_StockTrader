@@ -1,14 +1,14 @@
 <template>
   <div class="container">
-    <!--ToDo: Load app-header-->
-    <appHeader></appHeader>
+    <!--DONE: Load app-header-->
+    <app-header></app-header>
     <div class="row">
       <div class="col-xs-12">
         <transition
           name="slide"
           mode="out-in"
         >
-          <!--ToDo: Load router-view-->
+          <!--DONE: Load router-view-->
           <router-view></router-view>
         </transition>
       </div>
@@ -17,20 +17,18 @@
 </template>
 
 <script>
-//ToDo: Import Header Component
+//DONE: Import Header Component
 import Header from './components/Header.vue'
-
 export default {
-  //ToDo: Initialize Header component and name it appHeader
+  //DONE: Initialize Header component and name it appHeader
   components: {
     appHeader: Header
   },
- 
-  //ToDo: On page creation dispatch 'initStocks' to the vuex $store
-  data () {
-    $store.dispatch('initStocks')
+  //DONE: On page creation dispatch 'initStocks' to the vuex $store
+  created(){
+    this.$store.dispatch('initStocks');
   }
-
+  
 }
 </script>
 

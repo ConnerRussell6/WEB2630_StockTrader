@@ -18,16 +18,17 @@
         </ul>
         <strong class="navbar-text navbar-right">Funds:
           <!--ToDo: Call funds computed function and pipe the currency filter that is created in main.js-->
+          {{ funds | currency }}
         </strong>
         <ul class="nav navbar-nav navbar-right">
           <li>
             <!--ToDo: Add click event to <a> that calls endDay method-->
-            <a href="#" @click="enday()">End Day</a>
+            <a href="#" @click="endDay">End Day</a>
           </li>
 
           <!--ToDo: Inside <li> Bind to class using :class that passes an object {} called open and set it to isDropdownOpen-->
           <!--ToDo: Add click event that toggles isDropdownOpen to true and false-->
-          <li class="dropdown">
+          <li class="dropdown" @click="isDropdownOpen=!isDropdownOpen" :class="{open:isDropdownOpen}">
             <a
               href="#"
               class="dropdown-toggle"
@@ -37,10 +38,10 @@
               aria-expanded="false"
             >Save & Load <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <!--ToDo: Add click event that calls the saveData method-->
-              <li><a href="#">Save Data</a></li>
-              <!--ToDo: Add click event that calls the loadData method-->
-              <li><a href="#">Load Data</a></li>
+              <!--DONE: Add click event that calls the saveData method-->
+              <li><a href="#" @click="saveData">Save Data</a></li>
+              <!--DONE: Add click event that calls the loadData method-->
+              <li><a href="#" @click="loadData">Load Data</a></li>
             </ul>
           </li>
         </ul>
@@ -51,6 +52,7 @@
 
 <script>
 //ToDo: Import mapActions from vuex
+import {mapActions} from 'vuex'
 
 export default {
   data () {
@@ -70,9 +72,16 @@ export default {
     //ToDo: Create ...mapActions method
     //ToDo: Call randomizeStocks: 'randomizeStocks'
     //ToDo: Call fetchData: 'loadData'
+    ...mapActions({
+      randomizeStocks: 'randomizeStocks',
+      fetchData: 'loadData'
+    }),
 
     //ToDo: Create endDay method
     //ToDo: Call randomizeStocks()
+    endDay () {
+      this.randomizeStocks()
+    },
 
     //ToDo: Create SaveData method
     //ToDo: Create const called data that holds an object
@@ -80,9 +89,20 @@ export default {
     //ToDo: Set stockPortfolio: to the $store getters stockPortfolio
     //ToDo: Set stocks: to the $store getters stocks
     //ToDo: Outside the data object use $http, using .put pass 'data.json' and the data object
+    saveData () {
+      const data = {
+        funds: this.$store.getters.funds, 
+        stockPortfolio: this.$store.getters.stockPortfolio,
+        stocks: this.$store.getters.stocks,
+      }
+      this.$http.put('data.json', data)
+    },
 
     //ToDo: Create loadData method
     //ToDo: Call fetchData()
+    loadData () {
+      this.fetchData()
+    }
   }
 }
 </script>
