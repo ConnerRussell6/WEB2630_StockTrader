@@ -1,31 +1,24 @@
 <template>
-  <div class="col-sm-6 col-md-4">
-    <div class="panel panel-success">
-      <div class="panel-heading">
-        <h3 class="panel-title">
-          <!--DONE: Display the stock.name data object-->
-          {{ stock.name }}
-          <!--DONE: Inside <small> tags display Price: stock.price-->
-            <small>Price: {{ stock.price }}</small>
-        </h3>
-      </div>
-      <div class="panel-body">
-        <div class="pull-left">
-          <!--DONE: Inside input use v-model.number and pass quantity-->
-          <!--DONE: Bind to class using : and pass object called danger that takes in insufficientFunds-->
+  <div class="flex-container ">
+    <div>
+      <div class="card mb-3">
+        <div class="card-body">
+          <h3 class="card-title">
+            {{ stock.name }}
+          </h3>
+          <p class="card-text">Price: {{ stock.price }}</p>
           <input
             v-model.number="quantity"
-            :class="{danger:insufficientFunds}"
+            :class="{ danger: insufficientFunds }"
             type="number"
             class="form-control"
             placeholder="Quantity"
           >
-        </div>
-        <div class="pull-right">
-          <!--DONE: Inside the button add a click event that calls buyStock-->
-          <!--DONE: Bind to disabled using : and set it equal to insufficientFunds || quantity is less than or equal to 0 || !Number.isInteger(quantity)-->
-          <button class="btn btn-success" @click="buyStock" :disabled="insufficientFunds || quantity<=0 || !Number.isInteger(quantity)">
-            <!--DONE: Display insufficientFunds data object and add if using ? 'Not Enough' else 'Buy'-->
+          <button
+            class="btn btn-success mt-2"
+            @click="buyStock"
+            :disabled="insufficientFunds || quantity <= 0 || !Number.isInteger(quantity)"
+          >
             {{ insufficientFunds ? 'Not Enough' : 'Buy' }}
           </button>
         </div>
@@ -34,9 +27,15 @@
   </div>
 </template>
 
+
 <style scoped>
 .danger {
   border: 1px solid red;
+}
+
+.card {
+  width: 18rem; /* Adjust as needed */
+  margin: 1rem; /* Adjust as needed */
 }
 </style>
 

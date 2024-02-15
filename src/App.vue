@@ -1,9 +1,9 @@
 <template>
-  <div class="container">
+  <div>
     <!--DONE: Load app-header-->
     <app-header></app-header>
-    <div class="row">
-      <div class="col-xs-12">
+    <div>
+      <div class="marginB">
         <transition
           name="slide"
           mode="out-in"
@@ -34,8 +34,18 @@ export default {
 
 <style>
 body {
-  padding: 30px;
+  padding-top: 30px;
+  background-color: whitesmoke;
+  overflow: hidden;
 }
+
+
+.marginB {
+  width: 80%;
+  margin-left: 10%;
+  padding-top: 2.5%;
+}
+
 
 /*ToDo: Create slide-in effect for enter-active*/
 .slide-enter-active {
@@ -43,16 +53,16 @@ body {
 }
 /*ToDo: Create slide-out effect for leave-active*/
 .slide-leave-active {
-  transition: opacity 1s ease;
+  transition: opacity 0.5s ease;
   opacity: 0;
-  animation: slide-in 1s ease-out forwards;
+  animation: slide-in 0.5s ease-out forwards;
 }
 
 /*ToDo: Create Keyframes for slide-in, remember to include from and to*/
 /*You can use any settings*/
 @keyframes slide-in {
   0% {
-    transform: translateY(-30px);
+    transform: translateX(-30px);
   }
   100% {
     transform: translateY(0);

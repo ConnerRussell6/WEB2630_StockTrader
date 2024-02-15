@@ -16,6 +16,7 @@ import {routes} from './routes.js'
 //ToDo: Import store/store.js and name it store
 import store from './store/store.js'
 
+
 Vue.config.productionTip = false
 
 //ToDo Initialize VueRouter using Vue.use()

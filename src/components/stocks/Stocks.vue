@@ -1,14 +1,16 @@
 <template>
-  <div>
+  <div class="">
+  <div class="row">
     <!--DONE: Load app-stock component-->
     <!--DONE: Loop through stock in stocks using v-for-->
     <!--DONE: Bind to stock using : and pass stock from the v-for-->
     <app-stock
       v-for="stock in stocks"
-      :key="stock"
+      :key="stock.id"
       :stock="stock"
     ></app-stock>
   </div>
+</div>
 </template>
 
 <script>

@@ -1,16 +1,17 @@
 <template>
     <div class="col-sm-6 col-md-4">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h3 class="panel-title">
+        <div class="card mb-3">
+        <div class="card-body">
+            <div class="card-body">
+                <h3 class="card-title">
                     <!--DONE: Display the stock.name data object-->
                     {{ stock.name }}
                     <!--DONE: Inside <small> tags display Price: stock.price | Quantity stock.quantity-->
-                        <small>Price: {{ stock.price }} | Quantity: {{ stock.quantity}} </small>
+                        
                 </h3>
+                <p>Price: {{ stock.price }} | Quantity: {{ stock.quantity}}</p>
             </div>
-            <div class="panel-body">
-                <div class="pull-left">
+            <div class="card-text">
                     <!--DONE: Inside input use v-model.number and pass quantity-->
                         <!--DONE: Bind to class using : and pass object called danger that takes in insufficientQuantity-->
                     <input
@@ -19,8 +20,6 @@
                             type="number"
                             class="form-control"
                             placeholder="Quantity">
-                </div>
-                <div class="pull-right">
                     <!--DONE: Inside the button add a click event that calls sellStock-->
                         <!--DONE: Bind to disabled using : and set it equal to insufficientQuantity || quantity is less than or equal to 0 || !Number.isInteger(quantity)-->
                     <button class="btn btn-success" 
@@ -29,8 +28,8 @@
                         <!--ToDo: Display insufficientQuantity data object and add if using ? 'Not Enough' else 'Sell'-->
                         {{ insufficientQuantity ? 'Not Enough' : 'Sell' }}
                     </button>
-                </div>
             </div>
+        </div>
         </div>
     </div>
 </template>
