@@ -1,36 +1,22 @@
 <template>
-    <div class="col-sm-6 col-md-4">
+    <div class="col">
         <div class="card mb-3">
-        <div class="card-body">
             <div class="card-body">
                 <h3 class="card-title">
-                    <!--DONE: Display the stock.name data object-->
                     {{ stock.name }}
-                    <!--DONE: Inside <small> tags display Price: stock.price | Quantity stock.quantity-->
-                        
                 </h3>
-                <p>Price: {{ stock.price }} | Quantity: {{ stock.quantity}}</p>
-            </div>
-            <div class="card-text">
-                    <!--DONE: Inside input use v-model.number and pass quantity-->
-                        <!--DONE: Bind to class using : and pass object called danger that takes in insufficientQuantity-->
-                    <input
-                            v-model.number="quantity"
-                            :class="{danger:insufficientQuantity}"
-                            type="number"
-                            class="form-control"
-                            placeholder="Quantity">
-                    <!--DONE: Inside the button add a click event that calls sellStock-->
-                        <!--DONE: Bind to disabled using : and set it equal to insufficientQuantity || quantity is less than or equal to 0 || !Number.isInteger(quantity)-->
-                    <button class="btn btn-success" 
-                    @click="sellStock" 
-                    :disabled="insufficientQuantity || quantity<=0 || !Number.isInteger(quantity)">
-                        <!--ToDo: Display insufficientQuantity data object and add if using ? 'Not Enough' else 'Sell'-->
-                        {{ insufficientQuantity ? 'Not Enough' : 'Sell' }}
-                    </button>
-            </div>
+                <p class="card-text">Price: {{ stock.price }} | Quantity: {{ stock.quantity }}</p>
+            
+            <input v-model.number="quantity" :class="{ danger: insufficientQuantity }" type="number" class="form-control"
+                placeholder="Quantity">
+            <button class="btn btn-success" @click="sellStock"
+                :disabled="insufficientQuantity || quantity <= 0 || !Number.isInteger(quantity)">
+                <!--ToDo: Display insufficientQuantity data object and add if using ? 'Not Enough' else 'Sell'-->
+                {{ insufficientQuantity ? 'Not Enough' : 'Sell' }}
+            </button>
         </div>
         </div>
+
     </div>
 </template>
 
@@ -38,6 +24,12 @@
     .danger {
         border: 1px solid red;
     }
+
+    .card {
+  width: 18rem; /* Adjust as needed */
+  margin: 1rem; /* Adjust as needed */
+}
+
 </style>
 
 <script>

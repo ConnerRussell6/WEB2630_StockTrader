@@ -1,27 +1,17 @@
 <template>
-  <div class="flex-container ">
-    <div>
-      <div class="card mb-3">
-        <div class="card-body">
-          <h3 class="card-title">
-            {{ stock.name }}
-          </h3>
-          <p class="card-text">Price: {{ stock.price }}</p>
-          <input
-            v-model.number="quantity"
-            :class="{ danger: insufficientFunds }"
-            type="number"
-            class="form-control"
-            placeholder="Quantity"
-          >
-          <button
-            class="btn btn-success mt-2"
-            @click="buyStock"
-            :disabled="insufficientFunds || quantity <= 0 || !Number.isInteger(quantity)"
-          >
-            {{ insufficientFunds ? 'Not Enough' : 'Buy' }}
-          </button>
-        </div>
+  <div class="col">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h3 class="card-title">
+          {{ stock.name }}
+        </h3>
+        <p class="card-text">Price: {{ stock.price }}</p>
+        <input v-model.number="quantity" :class="{ danger: insufficientFunds }" type="number" class="form-control"
+          placeholder="Quantity">
+        <button class="btn btn-success mt-2" @click="buyStock"
+          :disabled="insufficientFunds || quantity <= 0 || !Number.isInteger(quantity)">
+          {{ insufficientFunds ? 'Not Enough' : 'Buy' }}
+        </button>
       </div>
     </div>
   </div>
