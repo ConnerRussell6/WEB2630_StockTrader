@@ -37,6 +37,7 @@ body {
   padding-top: 30px;
   background-color: whitesmoke;
   overflow: hidden;
+  font-size: 20px;
 }
 
 

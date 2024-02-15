@@ -26,8 +26,8 @@
     }
 
     .card {
-  width: 18rem; /* Adjust as needed */
-  margin: 1rem; /* Adjust as needed */
+  width: 20rem; /* Adjust as needed */
+  margin: 3rem; /* Adjust as needed */
 }
 
 </style>
